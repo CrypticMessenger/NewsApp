@@ -22,7 +22,6 @@ const Login = () => {
   }
   const handleChangePwd = (e)=>{
     setPwd(e)
-    console.log(pwd)
   }
   const storeData = async (key,value) => {
   try {
@@ -37,7 +36,6 @@ const Login = () => {
       const value = await AsyncStorage.getItem('abc@gmail.com')
       if(value !== null) {
         setIsLoggedIn(true)
-        console.log(value)
       }
       else{
         console.log('not logged in')
@@ -49,7 +47,6 @@ const Login = () => {
 
   useEffect(()=>{
     getData();
-    console.log("here")
   },[isLoggedIn])
 
   const toast = useToast();
@@ -57,7 +54,6 @@ const Login = () => {
     if(credentials.user === user && credentials.pwd === pwd){
       storeData(user,pwd)
       getData()
-      console.log("world is better without misery")
       setUser('')
       setPwd('')
     }
