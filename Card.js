@@ -1,10 +1,11 @@
 import React from 'react'
 import {Box,AspectRatio,Image,Text,Heading,Center,Stack,HStack,Link} from 'native-base'
-
+import {Button} from 'react-native'
+import { useNavigation } from '@react-navigation/native';
 
 
 const Card = (props) => {
-
+  const navigation = useNavigation();
   function formatDate(dateString) {
   const date = new Date(dateString);
   const options = { year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric' };
@@ -61,7 +62,19 @@ const formattedDate = formatDate(props.publishedAt);
         color: "violet.400"
       }} mt={-0.5} _web={{
         mb: -2
-      }} href={props.url}>Read More</Link>
+      }} href={props.url}>Read More</Link>{"\n\n"}<Button color="#7700cc" title="Details" onPress={()=>{
+        navigation.navigate('Details',{
+          title:props.title,
+          description:props.description,
+          url:props.url,
+          imageUrl:props.urlToImage,
+          date:formattedDate,
+          content:props.content,
+          author:props.author
+        });
+      }}/>
+        
+      
 
           </Text>
           <HStack alignItems="center" space={4} justifyContent="space-between">

@@ -1,9 +1,12 @@
 import React,{useState} from "react";
-// 1. import `NativeBaseProvider` component
 import { Appearance } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { NativeBaseProvider, Text, Box,Button ,Heading,Center} from "native-base";
-import Login from "./Login"
+import Login from "../Login"
+import { createStackNavigator } from '@react-navigation/stack';
+import { NavigationContainer } from '@react-navigation/native';
+import Details from '../Details'
+const Stack = createStackNavigator();
 export default function App() {
   
   // 2. Use at the root of your app
@@ -28,9 +31,13 @@ export default function App() {
 
   return (
     <NativeBaseProvider>
-    <Center flex={1} px="3">
-      {<Login />}
-    </Center>
+    <NavigationContainer>
+     <Stack.Navigator initialRouteName="Login" >
+      <Stack.Screen name="Main" component={Login} options={{headerShown: false}}/>
+      <Stack.Screen name="Details" component={Details} />
+    </Stack.Navigator>
+    </NavigationContainer>
+    
     </NativeBaseProvider>
   );
 }

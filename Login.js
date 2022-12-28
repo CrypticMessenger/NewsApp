@@ -3,13 +3,14 @@ import { Heading,useToast } from 'native-base';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Text,View } from 'react-native';
 import Home from './Home'
+import Details from './Details'
 import { Container, Content,Center,Box,VStack,FormControl,Input,Link,Button,HStack } from 'native-base';
-// function Login(){
-//   return (
-//     <Text>Hi there</Text>
-//   )
+import { createStackNavigator } from '@react-navigation/stack';
+import { NavigationContainer } from '@react-navigation/native';
 
-// }
+
+
+
 const Login = () => {
   const [user,setUser]=useState('')
   const [pwd,setPwd]=useState('')
@@ -75,9 +76,12 @@ const Login = () => {
   return (
     <React.Fragment>
     {isLoggedIn?(
-      <Home/>
+       <Home/>
+      
       ):
-    (<Center w="100%">
+    (
+      <Center flex={1} px="3">
+      <Center w="100%">
       <Box safeArea p="2" py="8" w="90%" maxW="290">
         <Heading size="lg" fontWeight="600" color="coolGray.800" _dark={{
         color: "warmGray.50"
@@ -112,6 +116,7 @@ const Login = () => {
          
         </VStack>
       </Box>
+    </Center>
     </Center>)
     }
     </React.Fragment>

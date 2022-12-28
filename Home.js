@@ -51,7 +51,7 @@ console.log(articles)
       <FlatList
         data={articles}
         renderItem={({ item }) => (
-           <Card title = {item.title} author={item.author} description={item.description} publishedAt={item.publishedAt} url={item.url} urlToImage={item.urlToImage}/>
+           <Card title = {item.title} author={item.author} description={item.description} publishedAt={item.publishedAt} url={item.url} urlToImage={item.urlToImage} content={item.content}/>
            
           
         )}
