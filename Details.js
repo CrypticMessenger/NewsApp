@@ -1,8 +1,8 @@
 import React from 'react'
-import {Text,Box,AspectRatio,Image,Center,Stack,Heading,HStack,Link} from "native-base"
+import {Text,Box,AspectRatio,Image,Center,Stack,Heading,HStack,Link,View} from "native-base"
 function Details({route}){
   return(
-    <React.Fragment>
+    <View style={{backgroundColor:route.params.mode==='light'?'#ffffff':'#000000'}}>
       <Box alignItems="center" p={3}>
       <Box maxW="80" rounded="lg" overflow="hidden" borderColor="coolGray.200" borderWidth="1" _dark={{
       borderColor: "coolGray.600",
@@ -50,7 +50,7 @@ function Details({route}){
         </Stack>
       </Box>
     </Box>
-    </React.Fragment>
+    </View>
   )
 }
 

@@ -1,9 +1,19 @@
 import React, { useState, useEffect } from 'react';
-import { View, FlatList, ActivityIndicator } from 'react-native';
+import { View, FlatList, ActivityIndicator,Appearance } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {Text} from 'native-base'
+import {Text,useColorMode} from 'native-base'
 import Card from './Card'
+
 const Home = () => {
+  
+const {
+    colorMode,
+    toggleColorMode
+  } = useColorMode();
+console.log(colorMode)
+
+
+
   const [articles, setArticles] = useState([]);
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
@@ -44,14 +54,13 @@ const Home = () => {
       fetchNews()
     }
   };
-console.log(articles)
   return (
-    <View>
-    <Text style={{ textAlign: 'center'}} bold fontSize="4xl" color="violet.500" mt={35}>Top News</Text>
+    <View style={{backgroundColor:colorMode==='light'?'#ffffff':'#000000'}}>
+    <Text style={{ textAlign: 'center'}} bold fontSize="4xl" color="violet.500" mt={0}>Top News</Text>
       <FlatList
         data={articles}
         renderItem={({ item }) => (
-           <Card title = {item.title} author={item.author} description={item.description} publishedAt={item.publishedAt} url={item.url} urlToImage={item.urlToImage} content={item.content}/>
+           <Card mode={colorMode} title = {item.title} author={item.author} description={item.description} publishedAt={item.publishedAt} url={item.url} urlToImage={item.urlToImage} content={item.content}/>
            
           
         )}

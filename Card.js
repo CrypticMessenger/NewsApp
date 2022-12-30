@@ -70,7 +70,8 @@ const formattedDate = formatDate(props.publishedAt);
           imageUrl:props.urlToImage,
           date:formattedDate,
           content:props.content,
-          author:props.author
+          author:props.author,
+          mode:props.mode
         });
       }}/>
         

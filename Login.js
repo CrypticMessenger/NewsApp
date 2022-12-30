@@ -1,17 +1,20 @@
 import React,{useState,useEffect} from "react";
-import { Heading,useToast } from 'native-base';
+import { Heading,useToast,useColorMode } from 'native-base';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { Text,View } from 'react-native';
+import { View,TouchableOpacity,Text,StyleSheet,Button } from 'react-native';
 import Home from './Home'
-import Details from './Details'
-import { Container, Content,Center,Box,VStack,FormControl,Input,Link,Button,HStack } from 'native-base';
-import { createStackNavigator } from '@react-navigation/stack';
-import { NavigationContainer } from '@react-navigation/native';
-
+import {Center,Box,VStack,FormControl,Input,Link } from 'native-base';
+import { Icon } from 'react-native-vector-icons';
 
 
 
 const Login = () => {
+
+  const {
+    colorMode,
+    toggleColorMode
+  } = useColorMode();
+ 
   const [user,setUser]=useState('')
   const [pwd,setPwd]=useState('')
   const credentials = {
@@ -45,7 +48,10 @@ const Login = () => {
       // error reading value
     }
   }
-
+  
+  // useEffect(()=>{
+  //   toggleColorMode()
+  // },[])
   useEffect(()=>{
     getData();
   },[isLoggedIn])
@@ -69,20 +75,26 @@ const Login = () => {
   }
 
 
-
-
-
+  const str = "Switch Theme"
+  const handleClick = ()=>{
+    toggleColorMode();
+  }
 
   return (
     <React.Fragment>
+    <Box mt={35}>
+    <Button style={{borderRadius:35}} color='#6d28d9'
+  title={colorMode==='dark'?'Dark Mode':'Light Mode'} onPress={toggleColorMode} />
+    </Box>
     {isLoggedIn?(
        <Home/>
       
       ):
     (
+      <View style={{flex:1,backgroundColor:colorMode==='dark'?'#000000':'#ffffff'}}>
       <Center flex={1} px="3">
       <Center w="100%">
-      <Box safeArea p="2" py="8" w="90%" maxW="290">
+      <Box safeArea p="2" py="8" w="90%" maxW="290" style={{backgroundColor:colorMode==='dark'?'#000000':'#ffffff'}}>
         <Heading size="lg" fontWeight="600" color="coolGray.800" _dark={{
         color: "warmGray.50"
       }}>
@@ -110,14 +122,15 @@ const Login = () => {
               Forget Password?
             </Link>
           </FormControl>
-          <Button mt="2" colorScheme="indigo" onPress={handlePress}>
-            Sign in
-          </Button>
+          <Button  title="Sign in" color="#4338ca" onPress={handlePress}/>
+            
          
         </VStack>
       </Box>
     </Center>
-    </Center>)
+    </Center>
+    </View>
+    )
     }
     </React.Fragment>
   );
