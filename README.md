@@ -1,4 +1,5 @@
 # News App using React Native
+
 - Features
   - Login Authentication (fake)
   - credentials to login are : (abc@gmail.com,123)
@@ -6,7 +7,8 @@
   - Pagination
   - Loaders
   - parsing json response from famous NewsApi
-  - :) api keys are exposed I know, thus have been disposed off.
+  - Theming
+
   
 
 
